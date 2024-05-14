@@ -45,21 +45,51 @@ function App() {
 
     const drawRedCircle = () => {
         const positions = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-        return positions.slice(0, 4).map(position => (
-            <div className="circle" key={position} onClick={() => handleClick(position)} />
+        const shuffledPositions = positions.slice(0, 4).sort(() => Math.random() - 0.5);
+
+        return shuffledPositions.map(position => (
+            <div className="circle" key={position} onClick={() => handleClick(position)}>
+                {/* ... */}
+            </div>
         ));
     };
 
-    const handleClick = (position: number) => {
+    function handleClick(position: number): void {
         if (gameActive) {
-            const clickTime = performance.now();
+            const clickTime: number = performance.now();
             const reactionTime = clickTime - startTime;
-            setReactionTimes(prevTimes => [...prevTimes, reactionTime]);
-            setScore(score + 1);
-            const circleToRemove = document.querySelector(`.circle:nth-child(${position})`);
-            circleToRemove?.classList.add('circle-selected')
+
+            const prevTimes: number[] = []; // Declare prevTimes here within handleClick
+            setReactionTimes([...prevTimes, reactionTime]); // Assuming setReactionTimes is a function that takes an array of numbers
+            setScore(score + 1); // Assuming setScore is a function that takes a number
+
+            const circleToRemove: HTMLDivElement | null = document.querySelector(`.circle:nth-child(${position})`);
+
+            if (circleToRemove) {
+                circleToRemove.classList.add('circle-selected');
+
+                // Gera nova posição aleatória para a bolinha (New random position for the circle)
+                const newPosition = position; // Assign the clicked position as the new position 
+
+                circleToRemove.classList.remove('circle-selected');
+                circleToRemove.style.gridRow = `${newPosition + 1}`;
+                circleToRemove.style.gridColumn = `${Math.floor(newPosition / 9) + 1}`;
+
+                // Update positions array (assuming positions is an object)
+                // No update to positions needed as the circle stays at the same position
+
+                // Access properties of the clicked circle element
+                const circleHeight: number = circleToRemove.offsetHeight; // Get height
+                const circleWidth: number = circleToRemove.offsetWidth; // Get width
+                const circleSize: number = Math.min(circleHeight, circleWidth); // Get size
+
+                // Do something with the properties (e.g., log them)
+                console.log(`Clicked circle height: ${circleHeight}`);
+                console.log(`Clicked circle width: ${circleWidth}`);
+                console.log(`Clicked circle size: ${circleSize}`);
+            }
         }
-    };
+    }
 
     return (
         <GridShotDetails>

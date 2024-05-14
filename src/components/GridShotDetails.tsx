@@ -28,7 +28,7 @@ const GridShotDetails = styled.div`
     .layout {
         border: 1px solid var(--border);
         width: 90%;
-        height: 25rem;
+        height: 40rem;
         margin: 0 auto;
         margin-top: 1rem;
         margin-bottom: 1rem;
