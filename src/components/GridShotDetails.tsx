@@ -1,76 +1,47 @@
 import styled from 'styled-components'
 
 const GridShotDetails = styled.div`
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
 
-    .header {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        color: var(--header);
+.container {
+    width: 100%;
+    background: var(--background-alt);
+    height: 30rem;
+    margin-top: 2rem;
+}
 
-        button {
-            background: var(--background-alt);
-            color: var(--white);
-            border: 0;
-            border-radius: 5px;
-            padding: 0.5rem 1rem;
-            cursor: pointer;
-            font-weight: bold;
-            transition: 1s;
+.grid-container {
+    display: grid;
+    grid-template-areas:
+        "pos1 pos2 pos3"
+        "pos4 pos5 pos6"
+        "pos7 pos8 pos9";
+    gap: 10px;
+    width: 30rem;
+    height: 25rem;
+    background: var(--background-alt);
+    padding: 10px;
+    margin: 2rem auto;
+}
 
-            &:hover {
-                background: var(--red);
-            }
-        }
-    }
+.circle {
+    width: 80px;
+    height: 80px;
+    background-color: var(--blue);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
 
-    .layout {
-        border: 1px solid var(--border);
-        width: 90%;
-        height: 40rem;
-        margin: 0 auto;
-        margin-top: 1rem;
-        margin-bottom: 1rem;
-        border-radius: 5px;
-        padding: 1rem;
-        background: var(--background-alt);
+.score {
+    font-size: 20px;
+}
 
-        .message {
-            text-align: center;
-        }
-        
-        .grid {
-            width: 30%;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            grid-template-rows: repeat(3, 1fr);
-            gap: 0rem;
-            margin: 0 auto;
-        }
-
-        .circle {
-            width: 5rem;
-            height: 5rem;
-            background: var(--blue);
-            border-radius: 50%;
-            margin: 0 auto;
-            margin-top: 2rem;
-            cursor: pointer;
-        }
-
-        .circle-selected {
-            background: var(--background-alt);
-        }
-    }
-
-    .scoreboard {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        color: var(--header);
-    }
 `
 
 export default GridShotDetails
